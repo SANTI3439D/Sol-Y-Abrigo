@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
-  ArrowUpRight,
-  Clock,
-  Coffee,
+  Check,
+  Gift,
   Heart,
   MapPin,
   Menu,
   MessageCircle,
   Moon,
   ShieldCheck,
+  Sparkles,
   Sun,
   Users,
   Utensils,
@@ -20,10 +20,10 @@ import {
 const BRAND_NAME = "Sol & Abrigo";
 const WHATSAPP_NUMBER = "573000000000"; // Número con código de país sin '+'
 const INSTAGRAM_HANDLE = "@solyabrigo.org";
-const CONTACT_EMAIL = "contacto@solyabrigo.org";
+const CONTACT_EMAIL = "hola@solyabrigo.org";
 
-function whatsappLink(message) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+function whatsappLink(text) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 export default function App() {
@@ -47,39 +47,38 @@ export default function App() {
 
   return (
     <>
-      {/* MASTHEAD EDITORIAL */}
-      <header className="masthead">
-        <div className="container masthead-inner">
+      {/* TOPBAR */}
+      <header className="topbar">
+        <div className="container topbar-inner">
           <a href="#inicio" className="brand">
-            <span className="brand-emblem" aria-hidden="true">
+            <span className="brand-badge" aria-hidden="true">
               <Sun size={18} />
             </span>
             <span>{BRAND_NAME}</span>
           </a>
 
-          <nav className="masthead-nav" aria-label="Navegación principal">
-            <a href="#modelo">El modelo 50/50</a>
-            <a href="#nocturna">Labor nocturna</a>
-            <a href="#desayunos">Desayunos</a>
-            <a href="#sumarse">Cómo apoyar</a>
+          <nav className="topbar-nav" aria-label="Navegación principal">
+            <a href="#modelo">El propósito</a>
+            <a href="#labor-nocturna">Labor nocturna</a>
+            <a href="#manifiesto">Nuestro compromiso</a>
+            <a href="#apoyar">Cómo apoyar</a>
           </nav>
 
-          <div className="masthead-actions">
+          <div className="topbar-actions">
             <a
               href={whatsappLink(
-                `Hola ${BRAND_NAME}, quiero conocer más o apoyar su labor nocturna.`
+                `Hola ${BRAND_NAME}, quiero conocer más sobre su labor benéfica o encargar un desayuno sorpresa.`
               )}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-forest btn-sm"
+              className="btn btn-coral btn-sm"
             >
-              Apoyar la causa
-              <ArrowUpRight size={16} />
+              Sumarme a la causa
             </a>
 
             <button
               type="button"
-              className="mobile-btn"
+              className="mobile-menu-btn"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen((prev) => !prev)}
             >
@@ -89,26 +88,26 @@ export default function App() {
         </div>
 
         {mobileOpen && (
-          <div className="mobile-panel">
+          <div className="mobile-drawer">
             <a href="#modelo" onClick={() => setMobileOpen(false)}>
-              El modelo 50/50
+              El propósito 50/50
             </a>
-            <a href="#nocturna" onClick={() => setMobileOpen(false)}>
+            <a href="#labor-nocturna" onClick={() => setMobileOpen(false)}>
               Labor nocturna
             </a>
-            <a href="#desayunos" onClick={() => setMobileOpen(false)}>
-              Desayunos con propósito
+            <a href="#manifiesto" onClick={() => setMobileOpen(false)}>
+              Nuestro compromiso
             </a>
-            <a href="#sumarse" onClick={() => setMobileOpen(false)}>
+            <a href="#apoyar" onClick={() => setMobileOpen(false)}>
               Cómo apoyar
             </a>
             <a
               href={whatsappLink(
-                `Hola ${BRAND_NAME}, me gustaría apoyar su labor.`
+                `Hola ${BRAND_NAME}, quiero apoyar su labor.`
               )}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-forest"
+              className="btn btn-coral"
               onClick={() => setMobileOpen(false)}
             >
               Escribir por WhatsApp
@@ -118,507 +117,356 @@ export default function App() {
       </header>
 
       <main>
-        {/* HERO ARQUITECTÓNICO */}
-        <section id="inicio" className="hero">
-          <div className="container hero-layout">
-            <div className="hero-copy reveal">
-              <span className="hero-tag">
-                <Sun size={14} />
-                Organización benéfica · Desayunos con sentido
+        {/* HERO CENTRADO + PUENTE VISUAL */}
+        <section id="inicio" className="hero-centered">
+          <div className="container">
+            <div className="hero-text-center reveal">
+              <span className="pill-kicker">
+                <Sparkles size={15} />
+                Organización social · Desayunos sorpresa con propósito
               </span>
-              <h1 className="hero-title">
-                Regala un <em>sol</em> al despertar, comparte abrigo en la
-                noche.
+              <h1 className="hero-headline">
+                Detalles que celebran la vida en la mañana,{" "}
+                <em>cenas que abrigan</em> la calle en la noche.
               </h1>
-              <p className="hero-lead">
-                En <strong>{BRAND_NAME}</strong> preparamos desayunos sorpresa
-                artesanales con un único objetivo: destinar{" "}
-                <strong>la mitad de todas nuestras ganancias</strong> a cocinar
-                y entregar cenas calientes a personas habitantes de calle.
+              <p className="hero-subcopy">
+                En <strong>{BRAND_NAME}</strong> elaboramos desayunos sorpresa
+                y detalles para fechas especiales con un fin claro: destinar{" "}
+                <strong>la mitad de todas las ganancias</strong> a preparar y
+                entregar alimento caliente a habitantes de calle.
               </p>
 
-              <div className="hero-cta-row">
-                <a href="#nocturna" className="btn btn-forest">
-                  Ver nuestra labor nocturna
+              <div className="hero-buttons">
+                <a href="#labor-nocturna" className="btn btn-coral">
+                  Conocer nuestra labor nocturna
                   <ArrowRight size={17} />
                 </a>
-                <a href="#modelo" className="btn btn-outline">
-                  Cómo funciona el 50/50
+                <a href="#apoyar" className="btn btn-indigo-outline">
+                  Cómo hacer parte
                 </a>
               </div>
+            </div>
 
-              <div className="hero-note">
-                <ShieldCheck size={18} color="#254d3e" />
-                <span>
-                  Proyecto social autosostenible · Alimento recién hecho y trato
-                  digno en cada ruta nocturna.
-                </span>
+            {/* Puente visual: El detalle de regalo vs La cena caliente */}
+            <div className="bridge-grid">
+              <div className="bridge-card reveal">
+                <img
+                  src="https://images.unsplash.com/photo-1764385827253-3d0a5eb813fe?auto=format&fit=crop&w=1200&q=80"
+                  alt="Caja de regalo sorpresa con moño dorado para celebraciones"
+                />
+                <div className="bridge-caption">
+                  <span className="bridge-badge bridge-badge--coral">
+                    <Gift size={13} />
+                    En la mañana · El detalle sorpresa
+                  </span>
+                  <h3>Cumpleaños, aniversarios y fechas especiales</h3>
+                  <p>
+                    Cada desayuno sorpresa personalizado financia de forma
+                    directa nuestra cocina solidaria.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bridge-card reveal delay-1">
+                <img
+                  src="https://images.unsplash.com/photo-1761936763596-4bcb3c7a22e7?auto=format&fit=crop&w=1200&q=80"
+                  alt="Plato caliente de comida recién preparada para entregar en la noche"
+                />
+                <div className="bridge-caption">
+                  <span className="bridge-badge bridge-badge--gold">
+                    <Moon size={13} />
+                    En la noche · La misión real
+                  </span>
+                  <h3>50% de las ganancias convertidas en cenas</h3>
+                  <p>
+                    Salimos al caer la noche a compartir comida recién hecha,
+                    bebida caliente y trato humano.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* LÍNEA DE TIEMPO 50/50 */}
+        <section id="modelo" className="section section-ice">
+          <div className="container">
+            <div className="section-title-block reveal">
+              <span className="section-label">
+                <Sun size={14} />
+                Cómo sostenemos la causa
+              </span>
+              <h2 className="section-h2">
+                Un puente directo entre quien regala un detalle y quien cena en
+                la calle.
+              </h2>
+              <p className="section-p">
+                En lugar de depender únicamente de colectas ocasionales, creamos
+                un modelo autosostenible donde el cariño de una celebración
+                sostiene de forma constante las rutas de la noche.
+              </p>
+            </div>
+
+            <div className="timeline-flow">
+              <article className="timeline-node reveal">
+                <div className="node-circle">01</div>
+                <h3>Alguien encarga un desayuno sorpresa</h3>
+                <p>
+                  Una persona nos contacta para enviar un detalle con globos,
+                  tarjeta y dedicatoria especial a alguien que ama en la mañana.
+                </p>
+              </article>
+
+              <article className="timeline-node reveal delay-1">
+                <div className="node-circle node-circle--coral">50%</div>
+                <h3>Destinamos la mitad de la ganancia</h3>
+                <p>
+                  De manera fija, la mitad del beneficio se separa para comprar
+                  granos, proteína, verduras, panela y empaques térmicos.
+                </p>
+              </article>
+
+              <article className="timeline-node reveal delay-2">
+                <div className="node-circle node-circle--gold">
+                  <Moon size={20} />
+                </div>
+                <h3>Preparamos y repartimos en la noche</h3>
+                <p>
+                  Cocinamos al caer la tarde y recorremos distintos puntos de la
+                  ciudad entregando alimento caliente y compañía respetuosa.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* ZONA NOCTURNA (EL CORAZÓN DE LA PÁGINA) */}
+        <section id="labor-nocturna" className="night-indigo">
+          <div className="container">
+            <div className="section-title-block reveal">
+              <span className="section-label">
+                <Moon size={14} />
+                Nuestra razón de existir
+              </span>
+              <h2 className="section-h2">
+                Visibilizar la noche con dignidad, nunca como espectáculo.
+              </h2>
+              <p className="section-p">
+                Cuando la ciudad baja las persianas, salimos a caminar los
+                andenes y puentes. Creemos que nadie debería sentirse invisible
+                ni cenar sobras frías.
+              </p>
+            </div>
+
+            {/* EDITAR: Cifras fijas de impacto */}
+            <div className="impact-numbers">
+              <div className="impact-box reveal">
+                <div className="impact-big">3.450+</div>
+                <p>Cenas calientes entregadas en mano durante la noche</p>
+              </div>
+              <div className="impact-box reveal delay-1">
+                <div className="impact-big">168</div>
+                <p>Rutas nocturnas realizadas en días de lluvia o frío</p>
+              </div>
+              <div className="impact-box reveal delay-2">
+                <div className="impact-big">50%</div>
+                <p>De las ganancias de cada detalle destinado a la cocina</p>
+              </div>
+              <div className="impact-box reveal delay-2">
+                <div className="impact-big">14</div>
+                <p>Sectores acompañados con presencia constante</p>
               </div>
             </div>
 
-            {/* Bento derecho: Fotografía + Ficha Verde Bosque */}
-            <div className="hero-bento reveal delay-1">
-              <div className="hero-bento-media">
+            {/* Crónica destacada con foto + 2 crónicas debajo */}
+            {/* EDITAR: Historias reales de la organización */}
+            <article className="featured-chronicle reveal">
+              <div className="featured-chronicle-img">
                 <img
-                  src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80"
-                  alt="Pan artesanal recién horneado para sostener las rutas nocturnas"
+                  src="https://images.unsplash.com/photo-1634213672726-ce9c6acb91c2?auto=format&fit=crop&w=1200&q=80"
+                  alt="Sopa caliente y pan servidos con cuidado"
                 />
               </div>
-
-              {/* EDITAR: Cifras principales de resumen */}
-              <div className="hero-bento-ledger">
-                <div className="ledger-item">
-                  <div className="ledger-value">50%</div>
-                  <div className="ledger-label">
-                    De las ganancias va directo a cocina nocturna
-                  </div>
-                </div>
-                <div className="ledger-item">
-                  <div className="ledger-value">+3.450</div>
-                  <div className="ledger-label">
-                    Cenas calientes entregadas en calle
-                  </div>
-                </div>
-                <div className="ledger-item">
-                  <div className="ledger-value">168</div>
-                  <div className="ledger-label">
-                    Rutas nocturnas recorridas todo el año
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECCIÓN 50/50 ASIMÉTRICA */}
-        <section id="modelo" className="section">
-          <div className="container split-mission">
-            <div className="ratio-panel reveal">
-              <span
-                className="kicker"
-                style={{ color: "#f7e9cd", marginBottom: 4 }}
-              >
-                <Heart size={14} />
-                Nuestro motor social
-              </span>
-              <h3>Una balanza justa entre quien celebra y quien necesita.</h3>
-              <p>
-                No dependemos solo de donaciones esporádicas. Diseñamos un
-                modelo donde cada detalle que regalas en la mañana sostiene de
-                manera permanente los ingredientes y empaques de la noche.
-              </p>
-
-              <div className="ratio-bar-box">
-                <div className="ratio-bar" aria-hidden="true">
-                  <div className="ratio-half-morning" />
-                  <div className="ratio-half-night" />
-                </div>
-                <div className="ratio-legend">
-                  <span>
-                    <span
-                      className="legend-dot"
-                      style={{ background: "#f7e9cd" }}
-                    />
-                    50% Sostenibilidad diaria
-                  </span>
-                  <span>
-                    <span
-                      className="legend-dot"
-                      style={{ background: "#f0a840" }}
-                    />
-                    50% Alimento nocturno
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="reveal delay-1">
-              <span className="kicker">
-                <Coffee size={14} />
-                Del amanecer a la calle
-              </span>
-              <h2 className="section-heading">
-                Así viaja tu apoyo en un solo día.
-              </h2>
-
-              <div className="editorial-steps">
-                <div className="editorial-step-row">
-                  <span className="editorial-step-num">01</span>
-                  <div>
-                    <h4>Alguien regala un desayuno en la mañana</h4>
-                    <p>
-                      Una familia, pareja o empresa encarga una de nuestras
-                      cajas artesanales para celebrar una fecha especial.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="editorial-step-row">
-                  <span className="editorial-step-num">02</span>
-                  <div>
-                    <h4>Apartamos el 50% de la ganancia neta</h4>
-                    <p>
-                      Ese fondo se destina íntegramente a comprar proteína,
-                      granos, verduras frescas, panela y recipientes térmicos
-                      para la jornada nocturna.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="editorial-step-row">
-                  <span className="editorial-step-num">03</span>
-                  <div>
-                    <h4>Cocinamos y salimos al caer la noche</h4>
-                    <p>
-                      Preparar comida fresca toma toda la tarde. Al anochecer
-                      salimos a recorrer sectores clave entregando platos
-                      calientes, bebida y escucha respetuosa.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ZONA NOCTURNA (PROTAGONISTA) */}
-        <section id="nocturna" className="hearth-zone">
-          <div className="container">
-            <div className="hearth-header reveal">
-              <span className="kicker">
-                <Moon size={15} />
-                Cuando cae el sol
-              </span>
-              <h2 className="section-heading">
-                Visibilizar a quienes habitan la calle con respeto y calor de
-                hogar.
-              </h2>
-              <p className="section-desc">
-                Salimos sin cámaras invasivas ni discursos asistencialistas.
-                Creemos que un plato caliente servido con amabilidad devuelve
-                parte de la dignidad que la indiferencia suele arrebatar.
-              </p>
-            </div>
-
-            {/* EDITAR: Cifras de impacto en formato informe */}
-            <div className="swiss-metrics reveal">
-              <div className="swiss-metric-cell">
-                <div className="swiss-metric-num">3.450+</div>
-                <p className="swiss-metric-text">
-                  Cenas calientes cocinadas desde cero y entregadas en mano
-                </p>
-              </div>
-              <div className="swiss-metric-cell">
-                <div className="swiss-metric-num">168</div>
-                <p className="swiss-metric-text">
-                  Jornadas nocturnas realizadas en lluvia o noches frías
-                </p>
-              </div>
-              <div className="swiss-metric-cell">
-                <div className="swiss-metric-num">14</div>
-                <p className="swiss-metric-text">
-                  Sectores de la ciudad acompañados semana tras semana
-                </p>
-              </div>
-              <div className="swiss-metric-cell">
-                <div className="swiss-metric-num">100%</div>
-                <p className="swiss-metric-text">
-                  Alimentos preparados el mismo día con ingredientes frescos
-                </p>
-              </div>
-            </div>
-
-            {/* Crónicas horizontales por zona y hora */}
-            <div className="chronicles-title-row reveal">
-              <div>
-                <span className="kicker">
-                  <Utensils size={14} />
-                  Bitácora de rutas
+              <div className="featured-chronicle-body">
+                <span className="zone-tag">
+                  <MapPin size={14} />
+                  Crónica destacada · Ruta Centro (9:30 p.m.)
                 </span>
-                <h3>Historias reales de nuestras salidas nocturnas</h3>
+                <h3>El termo de aguapanela y el nombre propio</h3>
+                <p>
+                  Aquella noche llovía fuerte cuando don Ernesto nos vio doblar
+                  la esquina. No preguntó qué traíamos en las cajas; preguntó si
+                  recordábamos cómo se llamaba. Entendimos entonces que el
+                  abrigo empieza llamando a cada persona por su nombre y
+                  sentándonos a conversar cinco minutos sin prisa.
+                </p>
+                <span className="raciones-chip">45 cenas calientes esa noche</span>
               </div>
-            </div>
+            </article>
 
-            <div className="chronicle-list">
-              {/* EDITAR: Crónicas reales de la organización */}
-              <article className="chronicle-row reveal">
-                <div className="chronicle-meta">
-                  <span className="chronicle-zone">
+            <div className="two-chronicles">
+              <article className="chronicle-card reveal">
+                <div>
+                  <span className="zone-tag">
                     <MapPin size={14} />
-                    Ruta Centro
+                    Ruta Terminal · 10:40 p.m.
                   </span>
-                  <span className="chronicle-time">9:30 p.m. · Lluvia</span>
-                </div>
-                <div className="chronicle-body">
-                  <h4>El termo de aguapanela y el nombre propio</h4>
+                  <h4>Un cumpleaños de día que abrigó la madrugada</h4>
                   <p>
-                    Don Ernesto nos esperaba bajo el alero de una esquina. No
-                    preguntó qué traíamos en las cajas; preguntó si recordábamos
-                    cómo se llamaba. Esa noche aprendimos que acompañar empieza
-                    mirando a los ojos y conversando sin afán.
+                    Un sábado entregamos seis detalles sorpresa de aniversario y
+                    cumpleaños por la mañana. La mitad de esas ganancias llenó
+                    dos ollas grandes de sancocho caliente y pan fresco para
+                    quienes dormían cerca de los puentes.
                   </p>
                 </div>
-                <div className="chronicle-badge">45 cenas entregadas</div>
+                <span className="raciones-chip">38 cenas + bebida caliente</span>
               </article>
 
-              <article className="chronicle-row reveal delay-1">
-                <div className="chronicle-meta">
-                  <span className="chronicle-zone">
+              <article className="chronicle-card reveal delay-1">
+                <div>
+                  <span className="zone-tag">
                     <MapPin size={14} />
-                    Ruta Terminal
+                    Cocina Solidaria · 7:15 p.m.
                   </span>
-                  <span className="chronicle-time">10:40 p.m. · Sábado</span>
-                </div>
-                <div className="chronicle-body">
-                  <h4>Celebraciones de día que abrigan la madrugada</h4>
+                  <h4>La regla de cocinar como para nuestra casa</h4>
                   <p>
-                    Aquel sábado entregamos seis desayunos de cumpleaños en la
-                    mañana. La mitad de esas ganancias llenó dos ollas enteras de
-                    sancocho caliente y pan fresco para quienes pernoctaban
-                    cerca de los puentes.
-                  </p>
-                </div>
-                <div className="chronicle-badge">38 cenas + bebida</div>
-              </article>
-
-              <article className="chronicle-row reveal delay-2">
-                <div className="chronicle-meta">
-                  <span className="chronicle-zone">
-                    <MapPin size={14} />
-                    Cocina Solidaria
-                  </span>
-                  <span className="chronicle-time">7:15 p.m. · Preparación</span>
-                </div>
-                <div className="chronicle-body">
-                  <h4>La regla de cocinar como para casa</h4>
-                  <p>
-                    Quien vive en la calle suele recibir sobras frías. En{" "}
+                    Quien habita la calle suele recibir sobras frías. En{" "}
                     {BRAND_NAME} ningún plato sale hacia la ruta si nosotros
                     mismos no nos sentaríamos con gusto a cenarlo esa noche.
                   </p>
                 </div>
-                <div className="chronicle-badge">60 raciones frescas</div>
+                <span className="raciones-chip">60 raciones recién hechas</span>
               </article>
             </div>
           </div>
         </section>
 
-        {/* MUESTRA DE DESAYUNOS EN TARJETAS HORIZONTALES */}
-        <section id="desayunos" className="section">
-          <div className="container">
-            <div className="showcase-header reveal">
-              <span className="kicker">
-                <Sun size={14} />
-                El vehículo que sostiene la labor
+        {/* MANIFIESTO Y COMPROMISO (REEMPLAZA AL CATÁLOGO) */}
+        <section id="manifiesto" className="section">
+          <div className="container manifesto-split">
+            <div className="manifesto-letter reveal">
+              <span className="section-label">
+                <Heart size={14} />
+                Por qué no somos una tienda más
               </span>
-              <h2 className="section-heading">
-                Desayunos artesanales pensados para multiplicar cenas.
-              </h2>
-              <p className="section-desc">
-                No funcionamos como un comercio tradicional: elaboramos estas
-                opciones bajo encargo únicamente para financiar nuestra cocina de
-                la noche.
+              <blockquote>
+                “Creemos que la solidaridad no tiene que esperar a diciembre ni
+                depender de la lástima. Un detalle que alegra a quien amas puede
+                ser, esa misma noche, el plato caliente de alguien que nadie
+                mira.”
+              </blockquote>
+              <p>
+                Por eso esta página no busca mostrarte un catálogo comercial,
+                sino abrirte la puerta a la historia real que sucede detrás de
+                cada desayuno sorpresa que preparamos.
               </p>
             </div>
 
-            <div className="horizontal-cards">
-              <article className="h-card reveal">
-                <div className="h-card-media">
-                  <img
-                    src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80"
-                    alt="Desayuno Sol de Mañana"
-                  />
-                </div>
-                <div className="h-card-content">
-                  <div>
-                    <div className="h-card-top">
-                      <h3>Caja Sol de Mañana</h3>
-                      <span className="impact-pill-green">
-                        <Moon size={13} />
-                        Financia 3 cenas nocturnas
-                      </span>
-                    </div>
-                    <p>
-                      Pan artesanal de masa madre, fruta fresca de temporada,
-                      café de origen y tarjeta explicando el impacto solidario
-                      que acaba de generar tu detalle.
-                    </p>
-                  </div>
-                  <div className="h-card-footer">
-                    <span className="h-card-detail">
-                      Elaborado bajo encargo previo · 50% directo a ruta
-                    </span>
-                    <a
-                      href={whatsappLink(
-                        `Hola ${BRAND_NAME}, me gustaría apoyar su causa encargando la Caja Sol de Mañana.`
-                      )}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-outline btn-sm"
-                    >
-                      Apoyar con esta opción
-                      <MessageCircle size={15} />
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <article className="h-card reveal delay-1">
-                <div className="h-card-media">
-                  <img
-                    src="https://images.unsplash.com/photo-1513442542250-854d436a73f2?auto=format&fit=crop&w=900&q=80"
-                    alt="Desayuno Raíz y Abrigo"
-                  />
-                </div>
-                <div className="h-card-content">
-                  <div>
-                    <div className="h-card-top">
-                      <h3>Desayuno Raíz y Abrigo</h3>
-                      <span className="impact-pill-green">
-                        <Moon size={13} />
-                        Financia 4 cenas + bebida caliente
-                      </span>
-                    </div>
-                    <p>
-                      Desayuno completo preparado al amanecer, jugo natural
-                      prensado y repostería casera. Su aporte cubre cuatro
-                      raciones nocturnas con bebida caliente.
-                    </p>
-                  </div>
-                  <div className="h-card-footer">
-                    <span className="h-card-detail">
-                      Ideal para cumpleaños o agradecimientos con propósito
-                    </span>
-                    <a
-                      href={whatsappLink(
-                        `Hola ${BRAND_NAME}, quiero apoyar su labor encargando el Desayuno Raíz y Abrigo.`
-                      )}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-outline btn-sm"
-                    >
-                      Apoyar con esta opción
-                      <MessageCircle size={15} />
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <article className="h-card reveal delay-2">
-                <div className="h-card-media">
-                  <img
-                    src="https://images.unsplash.com/photo-1522322420883-600684d7f9f1?auto=format&fit=crop&w=900&q=80"
-                    alt="Desayuno Doble Sol"
-                  />
-                </div>
-                <div className="h-card-content">
-                  <div>
-                    <div className="h-card-top">
-                      <h3>Mesa Doble Sol</h3>
-                      <span className="impact-pill-green">
-                        <Moon size={13} />
-                        Financia 6 cenas nocturnas
-                      </span>
-                    </div>
-                    <p>
-                      Caja pensada para compartir entre dos en la mañana
-                      mientras garantizas alimento recién cocinado para seis
-                      personas en situación de calle.
-                    </p>
-                  </div>
-                  <div className="h-card-footer">
-                    <span className="h-card-detail">
-                      Nuestra opción de mayor alcance social
-                    </span>
-                    <a
-                      href={whatsappLink(
-                        `Hola ${BRAND_NAME}, quiero apoyar su causa encargando la opción Mesa Doble Sol.`
-                      )}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-outline btn-sm"
-                    >
-                      Apoyar con esta opción
-                      <MessageCircle size={15} />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* CÓMO SUMARSE */}
-        <section id="sumarse" className="section section--mist">
-          <div className="container">
-            <div className="reveal" style={{ maxWidth: 660 }}>
-              <span className="kicker">
-                <Users size={14} />
-                Participación ciudadana
-              </span>
-              <h2 className="section-heading">
-                Tres formas sencillas de hacer parte de {BRAND_NAME}.
-              </h2>
-              <p className="section-desc">
-                Toda ayuda suma para que la cocina no se apague cuando llega la
-                noche.
-              </p>
-            </div>
-
-            <div className="join-grid">
-              <article className="join-card reveal">
-                <span className="join-icon">
-                  <Coffee size={20} />
+            <div className="principles-list">
+              <div className="principle-item reveal">
+                <span className="principle-icon">
+                  <ShieldCheck size={20} />
                 </span>
-                <h3>Regala con propósito</h3>
-                <p>
-                  Cuando tengas una fecha especial, elige un desayuno cuya
-                  ganancia alimente directamente nuestras salidas nocturnas.
-                </p>
-              </article>
+                <div>
+                  <h3>Sin cámaras ni exposición invasiva</h3>
+                  <p>
+                    Protegemos la identidad y la dignidad de las personas
+                    habitantes de calle. Ayudamos desde el respeto, no para
+                    grabar contenido viral.
+                  </p>
+                </div>
+              </div>
 
-              <article className="join-card reveal delay-1">
-                <span className="join-icon">
+              <div className="principle-item reveal delay-1">
+                <span className="principle-icon">
                   <Utensils size={20} />
                 </span>
-                <h3>Dona alimentos o empaques</h3>
-                <p>
-                  Recibimos aportes de arroz, granos, panela, proteína y
-                  recipientes térmicos para ampliar la cobertura de cada ruta.
-                </p>
-              </article>
-
-              <article className="join-card reveal delay-2">
-                <span className="join-icon">
-                  <Clock size={20} />
-                </span>
-                <h3>Camina en la ruta nocturna</h3>
-                <p>
-                  Súmate como voluntario ayudando en cocina al caer la tarde o
-                  acompañándonos a repartir las cenas en la ciudad.
-                </p>
-              </article>
-            </div>
-
-            <div className="closing-band reveal">
-              <div>
-                <h3>¿Conversamos sobre la próxima ruta nocturna?</h3>
-                <p>
-                  Escríbenos directamente por WhatsApp para sumarte como
-                  voluntario, donar insumos o encargar un desayuno con propósito.
-                </p>
+                <div>
+                  <h3>Alimento fresco y balanceado</h3>
+                  <p>
+                    Cocinamos cada jornada con ingredientes del día, porciones
+                    generosas y bebidas calientes que ayuden a sobrellevar el
+                    frío nocturno.
+                  </p>
+                </div>
               </div>
-              <a
-                href={whatsappLink(
-                  `Hola ${BRAND_NAME}, quiero conocer cómo sumarme o apoyar su labor.`
-                )}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-ember"
-              >
-                <MessageCircle size={18} />
-                Escribir por WhatsApp
-              </a>
+
+              <div className="principle-item reveal delay-2">
+                <span className="principle-icon">
+                  <Check size={20} />
+                </span>
+                <div>
+                  <h3>Transparencia del 50% en cada detalle</h3>
+                  <p>
+                    La mitad de las ganancias de nuestros detalles sorpresa se
+                    destina de forma intacta a insumos, cocina y logística de
+                    las salidas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CÓMO APOYAR */}
+        <section id="apoyar" className="section" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <div className="support-banner reveal">
+              <div className="support-banner-top">
+                <div>
+                  <span
+                    className="section-label"
+                    style={{ color: "#f4a926", marginBottom: 8 }}
+                  >
+                    <Users size={14} />
+                    Súmate al abrigo
+                  </span>
+                  <h2>¿Quieres apoyar nuestras rutas nocturnas?</h2>
+                  <p>
+                    Hay tres formas directas de ayudar a que la olla no se
+                    apague cuando cae la noche. Escríbenos y conversamos.
+                  </p>
+                </div>
+
+                <a
+                  href={whatsappLink(
+                    `Hola ${BRAND_NAME}, quiero saber cómo apoyar su labor nocturna.`
+                  )}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-gold"
+                >
+                  <MessageCircle size={18} />
+                  Escribir por WhatsApp
+                </a>
+              </div>
+
+              <div className="support-ways">
+                <div className="way-box">
+                  <h3>1. Encarga un detalle sorpresa</h3>
+                  <p>
+                    Cuando celebres un cumpleaños, grado o aniversario, escríbenos
+                    por WhatsApp para armar un desayuno sorpresa sabiendo que el
+                    50% alimentará la noche.
+                  </p>
+                </div>
+
+                <div className="way-box">
+                  <h3>2. Dona insumos o empaques</h3>
+                  <p>
+                    Recibimos arroz, lentejas, fríjoles, panela, chocolate,
+                    proteína y recipientes térmicos para ampliar las raciones.
+                  </p>
+                </div>
+
+                <div className="way-box">
+                  <h3>3. Acompaña como voluntario</h3>
+                  <p>
+                    Puedes sumarte en la preparación de alimentos al final de la
+                    tarde o caminar junto al equipo durante los recorridos.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -630,37 +478,37 @@ export default function App() {
           <div className="footer-grid">
             <div>
               <a href="#inicio" className="brand">
-                <span className="brand-emblem" aria-hidden="true">
+                <span className="brand-badge" aria-hidden="true">
                   <Sun size={18} />
                 </span>
                 <span>{BRAND_NAME}</span>
               </a>
-              <p style={{ maxWidth: 360, marginTop: 10 }}>
-                Organización benéfica dedicada a transformar desayunos sorpresa
-                en cenas calientes y compañía digna para habitantes de calle.
+              <p style={{ maxWidth: 360, marginTop: 12 }}>
+                Organización benéfica dedicada a transformar desayunos sorpresa y
+                detalles de regalo en alimento caliente para habitantes de calle.
               </p>
             </div>
 
             <div>
-              <h4>Explorar</h4>
+              <h4>Navegación</h4>
               <ul>
                 <li>
-                  <a href="#modelo">El modelo 50/50</a>
+                  <a href="#modelo">Cómo funciona el 50/50</a>
                 </li>
                 <li>
-                  <a href="#nocturna">Labor nocturna</a>
+                  <a href="#labor-nocturna">Labor nocturna y crónicas</a>
                 </li>
                 <li>
-                  <a href="#desayunos">Desayunos con sentido</a>
+                  <a href="#manifiesto">Nuestro compromiso</a>
                 </li>
                 <li>
-                  <a href="#sumarse">Cómo apoyar</a>
+                  <a href="#apoyar">Formas de apoyar</a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4>Contacto</h4>
+              <h4>Contacto directo</h4>
               <ul>
                 <li>Colombia</li>
                 <li>{CONTACT_EMAIL}</li>
@@ -670,8 +518,8 @@ export default function App() {
           </div>
 
           <div className="footer-bottom">
-            <span>{BRAND_NAME} · Labor social nocturna</span>
-            <span>Un sol al despertar, un abrigo en la noche</span>
+            <span>{BRAND_NAME} · Organización benéfica</span>
+            <span>Detalles que celebran, cenas que abrigan</span>
           </div>
         </div>
       </footer>

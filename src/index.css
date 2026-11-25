@@ -127,10 +127,14 @@ button {
 .topbar-nav {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 30px;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
+}
+
+.topbar-nav a {
+  transition: color 0.2s ease;
 }
 
 .topbar-nav a:hover {
@@ -138,13 +142,12 @@ button {
 }
 
 .topbar-actions {
-  display: flex;
+  display: none;
   align-items: center;
-  gap: 10px;
 }
 
 .mobile-menu-btn {
-  display: none;
+  display: grid;
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -169,6 +172,10 @@ button {
   border-bottom: 1px solid var(--line-light);
 }
 
+.mobile-drawer a:last-child {
+  border-bottom: none;
+}
+
 /* ================= BOTONES ================= */
 .btn {
   display: inline-flex;
@@ -185,11 +192,6 @@ button {
 
 .btn:hover {
   transform: translateY(-2px);
-}
-
-.btn-sm {
-  padding: 9px 18px;
-  font-size: 0.85rem;
 }
 
 .btn-coral {
@@ -210,15 +212,6 @@ button {
 
 .btn-indigo-outline:hover {
   background: var(--bg-ice);
-}
-
-.btn-gold {
-  background: var(--sun-gold);
-  color: var(--indigo-deep);
-}
-
-.btn-gold:hover {
-  background: #f7b747;
 }
 
 /* ================= HERO CENTRADO + PUENTE VISUAL ================= */
@@ -602,7 +595,7 @@ button {
   font-size: 0.92rem;
 }
 
-/* ================= MANIFIESTO Y PRINCIPIOS (SIN CATÁLOGO) ================= */
+/* ================= MANIFIESTO Y PRINCIPIOS ================= */
 .manifesto-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -669,7 +662,7 @@ button {
   color: var(--text-muted);
 }
 
-/* ================= CÓMO APOYAR ================= */
+/* ================= CÓMO SE HACE POSIBLE ================= */
 .support-banner {
   background: linear-gradient(135deg, var(--indigo) 0%, #2b3a73 100%);
   color: #fff;
@@ -678,11 +671,7 @@ button {
 }
 
 .support-banner-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 28px;
-  padding-bottom: 34px;
+  padding-bottom: 32px;
   border-bottom: 1px solid var(--line-indigo);
   margin-bottom: 34px;
 }
@@ -691,13 +680,13 @@ button {
   font-size: clamp(1.75rem, 3vw, 2.35rem);
   line-height: 1.15;
   margin: 0 0 10px;
-  max-width: 620px;
+  max-width: 680px;
 }
 
 .support-banner-top p {
   margin: 0;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 580px;
+  max-width: 660px;
 }
 
 .support-ways {
@@ -710,7 +699,7 @@ button {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--line-indigo);
   border-radius: var(--radius-md);
-  padding: 22px;
+  padding: 24px;
 }
 
 .way-box h3 {
@@ -725,7 +714,7 @@ button {
   color: rgba(255, 255, 255, 0.82);
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER (2 COLUMNAS LIMPIAS) ================= */
 .footer {
   background: var(--bg-ice);
   border-top: 1px solid var(--line-light);
@@ -735,10 +724,11 @@ button {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr;
   gap: 40px;
   padding-bottom: 36px;
   border-bottom: 1px solid var(--line-light);
+  align-items: start;
 }
 
 .footer h4 {
@@ -794,25 +784,15 @@ button {
   .support-ways {
     grid-template-columns: 1fr;
   }
-
-  .support-banner-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media (max-width: 720px) {
-  .topbar-nav,
-  .topbar-actions .btn {
+  .topbar-nav {
     display: none;
   }
 
-  .mobile-menu-btn {
-    display: grid;
+  .topbar-actions {
+    display: flex;
   }
 
   .hero-centered {

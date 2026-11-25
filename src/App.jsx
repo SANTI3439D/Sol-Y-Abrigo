@@ -6,7 +6,6 @@ import {
   Heart,
   MapPin,
   Menu,
-  MessageCircle,
   Moon,
   ShieldCheck,
   Sparkles,
@@ -16,15 +15,7 @@ import {
   X,
 } from "lucide-react";
 
-/* EDITAR: Datos principales de Sol & Abrigo */
 const BRAND_NAME = "Sol & Abrigo";
-const WHATSAPP_NUMBER = "573000000000"; // Número con código de país sin '+'
-const INSTAGRAM_HANDLE = "@solyabrigo.org";
-const CONTACT_EMAIL = "hola@solyabrigo.org";
-
-function whatsappLink(text) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-}
 
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -61,21 +52,10 @@ export default function App() {
             <a href="#modelo">El propósito</a>
             <a href="#labor-nocturna">Labor nocturna</a>
             <a href="#manifiesto">Nuestro compromiso</a>
-            <a href="#apoyar">Cómo apoyar</a>
+            <a href="#como-ayuda">Cómo funciona la ayuda</a>
           </nav>
 
           <div className="topbar-actions">
-            <a
-              href={whatsappLink(
-                `Hola ${BRAND_NAME}, quiero conocer más sobre su labor benéfica o encargar un desayuno sorpresa.`
-              )}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-coral btn-sm"
-            >
-              Sumarme a la causa
-            </a>
-
             <button
               type="button"
               className="mobile-menu-btn"
@@ -88,7 +68,7 @@ export default function App() {
         </div>
 
         {mobileOpen && (
-          <div className="mobile-drawer">
+          <div className="mobile-panel">
             <a href="#modelo" onClick={() => setMobileOpen(false)}>
               El propósito 50/50
             </a>
@@ -98,19 +78,8 @@ export default function App() {
             <a href="#manifiesto" onClick={() => setMobileOpen(false)}>
               Nuestro compromiso
             </a>
-            <a href="#apoyar" onClick={() => setMobileOpen(false)}>
-              Cómo apoyar
-            </a>
-            <a
-              href={whatsappLink(
-                `Hola ${BRAND_NAME}, quiero apoyar su labor.`
-              )}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-coral"
-              onClick={() => setMobileOpen(false)}
-            >
-              Escribir por WhatsApp
+            <a href="#como-ayuda" onClick={() => setMobileOpen(false)}>
+              Cómo funciona la ayuda
             </a>
           </div>
         )}
@@ -141,8 +110,8 @@ export default function App() {
                   Conocer nuestra labor nocturna
                   <ArrowRight size={17} />
                 </a>
-                <a href="#apoyar" className="btn btn-indigo-outline">
-                  Cómo hacer parte
+                <a href="#modelo" className="btn btn-indigo-outline">
+                  El modelo 50/50
                 </a>
               </div>
             </div>
@@ -212,8 +181,9 @@ export default function App() {
                 <div className="node-circle">01</div>
                 <h3>Alguien encarga un desayuno sorpresa</h3>
                 <p>
-                  Una persona nos contacta para enviar un detalle con globos,
-                  tarjeta y dedicatoria especial a alguien que ama en la mañana.
+                  Una persona elige enviar un detalle con globos, tarjeta y
+                  dedicatoria especial para sorprender a alguien que ama en la
+                  mañana.
                 </p>
               </article>
 
@@ -300,7 +270,9 @@ export default function App() {
                   abrigo empieza llamando a cada persona por su nombre y
                   sentándonos a conversar cinco minutos sin prisa.
                 </p>
-                <span className="raciones-chip">45 cenas calientes esa noche</span>
+                <span className="raciones-chip">
+                  45 cenas calientes esa noche
+                </span>
               </div>
             </article>
 
@@ -341,7 +313,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* MANIFIESTO Y COMPROMISO (REEMPLAZA AL CATÁLOGO) */}
+        {/* MANIFIESTO Y COMPROMISO */}
         <section id="manifiesto" className="section">
           <div className="container manifesto-split">
             <div className="manifesto-letter reveal">
@@ -408,62 +380,50 @@ export default function App() {
           </div>
         </section>
 
-        {/* CÓMO APOYAR */}
-        <section id="apoyar" className="section" style={{ paddingTop: 0 }}>
+        {/* CÓMO SE HACE POSIBLE (INFORMATIVO, SIN CONTACTO) */}
+        <section id="como-ayuda" className="section" style={{ paddingTop: 0 }}>
           <div className="container">
             <div className="support-banner reveal">
               <div className="support-banner-top">
-                <div>
-                  <span
-                    className="section-label"
-                    style={{ color: "#f4a926", marginBottom: 8 }}
-                  >
-                    <Users size={14} />
-                    Súmate al abrigo
-                  </span>
-                  <h2>¿Quieres apoyar nuestras rutas nocturnas?</h2>
-                  <p>
-                    Hay tres formas directas de ayudar a que la olla no se
-                    apague cuando cae la noche. Escríbenos y conversamos.
-                  </p>
-                </div>
-
-                <a
-                  href={whatsappLink(
-                    `Hola ${BRAND_NAME}, quiero saber cómo apoyar su labor nocturna.`
-                  )}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-gold"
+                <span
+                  className="section-label"
+                  style={{ color: "#f4a926", marginBottom: 8 }}
                 >
-                  <MessageCircle size={18} />
-                  Escribir por WhatsApp
-                </a>
+                  <Users size={14} />
+                  Sostenibilidad comunitaria
+                </span>
+                <h2>Así se mantiene encendida la cocina cada noche</h2>
+                <p>
+                  Detrás de cada jornada nocturna hay una red de pequeños gestos
+                  cotidianos que permiten que la olla no se apague.
+                </p>
               </div>
 
               <div className="support-ways">
                 <div className="way-box">
-                  <h3>1. Encarga un detalle sorpresa</h3>
+                  <h3>1. Detalles con propósito</h3>
                   <p>
-                    Cuando celebres un cumpleaños, grado o aniversario, escríbenos
-                    por WhatsApp para armar un desayuno sorpresa sabiendo que el
-                    50% alimentará la noche.
+                    Cada desayuno sorpresa de cumpleaños, grado o aniversario
+                    aporta automáticamente la mitad de su ganancia neta al fondo
+                    de cenas nocturnas.
                   </p>
                 </div>
 
                 <div className="way-box">
-                  <h3>2. Dona insumos o empaques</h3>
+                  <h3>2. Aportes en insumos</h3>
                   <p>
-                    Recibimos arroz, lentejas, fríjoles, panela, chocolate,
-                    proteína y recipientes térmicos para ampliar las raciones.
+                    Alimentos no perecederos como arroz, lentejas, fríjoles,
+                    panela, chocolate y recipientes térmicos amplían el alcance
+                    de cada recorrido.
                   </p>
                 </div>
 
                 <div className="way-box">
-                  <h3>3. Acompaña como voluntario</h3>
+                  <h3>3. Manos voluntarias</h3>
                   <p>
-                    Puedes sumarte en la preparación de alimentos al final de la
-                    tarde o caminar junto al equipo durante los recorridos.
+                    Personas comprometidas dedican sus tardes a preparar los
+                    alimentos desde cero y sus noches a compartirlos con respeto
+                    en la ciudad.
                   </p>
                 </div>
               </div>
@@ -483,14 +443,15 @@ export default function App() {
                 </span>
                 <span>{BRAND_NAME}</span>
               </a>
-              <p style={{ maxWidth: 360, marginTop: 12 }}>
-                Organización benéfica dedicada a transformar desayunos sorpresa y
-                detalles de regalo en alimento caliente para habitantes de calle.
+              <p style={{ maxWidth: 420, marginTop: 12 }}>
+                Iniciativa social dedicada a transformar desayunos sorpresa y
+                detalles de regalo en alimento caliente y compañía digna para
+                habitantes de calle en las noches.
               </p>
             </div>
 
             <div>
-              <h4>Navegación</h4>
+              <h4>Recorrido</h4>
               <ul>
                 <li>
                   <a href="#modelo">Cómo funciona el 50/50</a>
@@ -502,23 +463,14 @@ export default function App() {
                   <a href="#manifiesto">Nuestro compromiso</a>
                 </li>
                 <li>
-                  <a href="#apoyar">Formas de apoyar</a>
+                  <a href="#como-ayuda">Cómo se sostiene la labor</a>
                 </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4>Contacto directo</h4>
-              <ul>
-                <li>Colombia</li>
-                <li>{CONTACT_EMAIL}</li>
-                <li>Instagram: {INSTAGRAM_HANDLE}</li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span>{BRAND_NAME} · Organización benéfica</span>
+            <span>{BRAND_NAME} · Organización social</span>
             <span>Detalles que celebran, cenas que abrigan</span>
           </div>
         </div>
